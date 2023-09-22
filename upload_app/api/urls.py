@@ -6,6 +6,6 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("upload/", views.upload_file),
+    path("upload/", views.AddFile.as_view()),
     path("files/", views.get_files),
 ]
