@@ -6,7 +6,7 @@ from django.db import models
 def upload_to(instance, filename):
     now = datetime.now()
     base, extension = os.path.splitext(filename.lower())
-    return f"{base}{now:%Y%m%d%H%M%S}{extension}"
+    return f"{base}_{now:%H%M%S}{extension}"
 
 
 class UploadFile(models.Model):
@@ -17,4 +17,4 @@ class UploadFile(models.Model):
     processed = models.BooleanField(verbose_name="Файл обработан", default=False)
 
     def __str__(self) -> str:
-        return self.file
+        return f"{self.file}"
