@@ -133,3 +133,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/uploads/"
+
+# Celery
+CELERY_BROKER_URL = "amqp://localhost"
+CELERY_BACKEND = "rpc://"
+CELERY_TASK_TARCK_STARTED = True
+CELERY_RESULT_BACKEND = "rpc://"
+CELERY_RESULT_PERSISTENT = True
+CELERY_IMPORTS = ("files",)
