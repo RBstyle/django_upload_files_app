@@ -1,6 +1,11 @@
 # django_upload_files_app
 Simple dockerized uploading files app with Django REST framework
 
+### RUN
+```bash
+$ docker-compose up --build
+```
+
 Тестовое задание: Загрузка и обработка файлов
 
 Цель:
