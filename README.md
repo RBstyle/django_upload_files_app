@@ -33,7 +33,7 @@ $ curl -F "file=@123.txt" http://0.0.0.0:8000/upload/
 
 
 ```
-in docker console "processing text" message if text file uploaded
+in docker console "processing text" message if text file uploaded( formats available: text, image, video, audio)
 ```docker
 celery_1  | [2023-09-26 21:22:18,006: WARNING/ForkPoolWorker-2] processing text file ID:1
 ... 10sec ...
@@ -66,7 +66,8 @@ curl -F "file=@222.png" http://0.0.0.0:8000/upload/
 
 
 ```
-in docker console "processing image" message if text file uploaded
+in docker console "processing image" message if image file uploaded( formats available: text, image, video, audio)
+
 ```docker
 celery_1  | [2023-09-26 21:27:12,760: WARNING/ForkPoolWorker-2] processing image file ID:2
 
