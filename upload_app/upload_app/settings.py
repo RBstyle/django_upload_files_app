@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-wci9p7wx)w+7*ak$sos+biz)(b#an@uw%hgesiiscb=q2k8jb3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -135,7 +135,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/uploads/"
 
 # Celery
-CELERY_BROKER_URL = "amqp://localhost"
+CELERY_BROKER_URL = "amqp://admin:password@rabbit:5672//"
 CELERY_BACKEND = "rpc://"
 CELERY_TASK_TARCK_STARTED = True
 CELERY_RESULT_BACKEND = "rpc://"

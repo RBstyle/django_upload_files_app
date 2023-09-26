@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  web:
+    restart: unless-stopped
+    build: .
+    entrypoint: /server-entrypoint.sh
+    container_name: django_upload_app
+    volumes:
+      - .:/upload_app
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://upload_files_admin:password@db:5432/upload_files
+      - POSTGRES_DB=upload_files
+      - POSTGRES_USER=upload_files_admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=db
+    depends_on:
+      - db
+  db:
+    image: postgres:14.9
+    restart: always
+    hostname: db
+    ports:
+      - "15432:5432"
+    env_file:
+      - .env
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/1_init_schema.sql
+
+  celery:
+    restart: unless-stopped
+    image: celery
+    build: .
+    entrypoint: /worker-entrypoint.sh
+    depends_on:
+      - web
+      - rabbit
+
+  rabbit:
+    image: rabbitmq:3.12-management
+    hostname: rabbit
+    restart: always
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=password

@@ -1,10 +1,11 @@
-import time
+import time, os
 from celery import Celery
 from typing import NoReturn
 
+
 from files.models import UploadFile
 
-app = Celery("tasks")
+app = Celery("tasks", broker=os.environ.get("CELERY_BROKER_URL"))
 
 
 @app.task()
