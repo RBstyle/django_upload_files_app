@@ -135,7 +135,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/uploads/"
 
 # Celery
-CELERY_BROKER_URL = "amqp://rabbitmq"
+CELERY_BROKER_URL = "amqp://admin:password@rabbit:5672//"
 CELERY_BACKEND = "rpc://"
 CELERY_TASK_TARCK_STARTED = True
 CELERY_RESULT_BACKEND = "rpc://"

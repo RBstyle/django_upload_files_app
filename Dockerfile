@@ -7,6 +7,11 @@ ENV PYTHONUNBUFFERED 1
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-COPY ./docker/docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
+
+COPY ./docker/backend/worker-entrypoint.sh /worker-entrypoint.sh
+COPY ./docker/backend/server-entrypoint.sh /server-entrypoint.sh
+
+RUN chmod +x /worker-entrypoint.sh
+RUN chmod +x /server-entrypoint.sh
+
 COPY . .
